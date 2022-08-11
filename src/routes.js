@@ -13,39 +13,36 @@
 
     // *** Set up UI states ***
     $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'src/modules/menuapp/template/home.template.html'
+      })
 
-    // Home page
-    .state('home', {
-      url: '/',
-      templateUrl: 'src/modules/menuapp/templates/menuapp.template.html'
-    })
+      // Premade list page
+      .state('categories', {
+        url: '/categories',
+        templateUrl: 'src/modules/menuapp/template/categories.template.html',
+        resolve: {
+          categories: ['DataService', function(DataService) {
+            return DataService.getItems();
+          }]
+        }
+      })
 
-    // Premade list page
-    .state('mainList', {
-      url: '/main-list',
-      templateUrl: 'src/shoppinglist/templates/main-shoppinglist.template.html',
-      controller: 'MainShoppingListController as mainList',
-      resolve: {
-        items: ['ShoppingListService', function (ShoppingListService) {
-          return ShoppingListService.getItems();
-        }]
-      }
-    })
-
-    .state('itemDetail', {
-      url: '/item-detail/{itemId}',
-      templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
-      controller: 'ItemDetailController as itemDetail',
-      resolve: {
-        item: ['$stateParams', 'ShoppingListService',
-              function ($stateParams, ShoppingListService) {
-                return ShoppingListService.getItems()
-                  .then(function (items) {
-                    return items[$stateParams.itemId];
-                  });
-              }]
-      }
-    });
+      .state('itemDetail', {
+        url: '/item-detail/{itemId}',
+        templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
+        controller: 'ItemDetailController as itemDetail',
+        resolve: {
+          item: ['$stateParams', 'ShoppingListService',
+                function ($stateParams, ShoppingListService) {
+                  return ShoppingListService.getItems()
+                    .then(function (items) {
+                      return items[$stateParams.itemId];
+                    });
+                }]
+        }
+      });
   }
 
 })();
