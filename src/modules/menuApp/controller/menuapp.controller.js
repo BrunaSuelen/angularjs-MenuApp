@@ -6,11 +6,12 @@
   .controller('MenuAppController', MenuAppController);
 
 
-  MenuAppController.$inject = ['items'];
+  function MenuAppController() {
+    let $ctrl = this;
 
-  function MenuAppController(items) {
-    var mainList = this;
-    mainList.items = items;
+    $ctrl.$onInit = function() {
+      console.log("veio")
+    };
   }
 
 })();
