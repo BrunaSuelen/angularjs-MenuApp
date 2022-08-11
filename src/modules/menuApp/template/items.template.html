@@ -1,3 +1,11 @@
 <div ng-repeat="item in ctrl.items.menu_items">
-  {{item.name}}
+  <div class="panel panel-default">
+    <div class="panel-heading" ui-sref="items({category: item.short_name})">
+      <span class="label label-info ng-binding">{{ item.short_name }}</span>
+      <h3 class="panel-title">{{ item.name }}</h3>
+    </div>
+    <div class="panel-body">
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
 </div>

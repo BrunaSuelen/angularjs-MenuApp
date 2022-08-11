@@ -1,20 +1,8 @@
-<div ng-repeat="category in ctrl.categories">
-  <div 
-    id="accordion" 
-    class="panel-group" 
-    role="tablist" 
-    aria-multiselectable="true"
-    >
-    <div class="panel">
-      <div class="panel-heading" role="tab">
-        <div class="panel-title">
-          <span class="label label-info">{{category.short_name}}</span>
-          <a ui-sref="items({category: category.short_name})">{{category.name}}</a>
-        </div>
-        <div class="panel-collapse collapse in" role="tabpanel">
-          <div class="panel-body"></div>
-        </div>
-      </div>
+<div ng-repeat="category in ctrl.categories" class="category">
+  <div class="panel panel-default">
+    <div class="panel-heading" ui-sref="items({category: category.short_name})">
+      <span class="label label-info ng-binding">{{ category.short_name }}</span>
+      <h3 class="panel-title">{{ category.name }}</h3>
     </div>
   </div>
 </div>
