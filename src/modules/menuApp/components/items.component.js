@@ -3,8 +3,8 @@
 
   angular
     .module('MenuAppModule')
-    .component('menuapp', {
-      templateUrl: 'src/module/menuapp/template/menuapp.template.html',
+    .component('items', {
+      templateUrl: 'src/module/menuapp/components/items.component.js',
       bindings: {
         items: '<'
       }
