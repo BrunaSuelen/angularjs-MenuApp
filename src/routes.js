@@ -36,6 +36,26 @@
           }]
         }
       })
+
+      // Premade list page
+      .state('items', {
+        url: '/items/:category',
+        templateUrl: 'src/modules/menuapp/template/items.template.html',
+        controller: 'ItemsController as ctrl',
+        resolve: {
+          items: [
+            '$stateParams',
+            'MenuDataService',
+            function($stateParams, MenuDataService) {
+              return MenuDataService
+                .getItemsForCategory($stateParams.category)
+                .then(function(response) {
+                  return response.data;
+                });
+            }
+          ]
+        }
+      })
   }
 
 })();
