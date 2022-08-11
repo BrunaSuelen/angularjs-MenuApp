@@ -5,7 +5,9 @@
     .module('MenuAppModule')
     .config(RoutesConfig);
 
+
   RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+  
   function RoutesConfig($stateProvider, $urlRouterProvider) {
 
     // Redirect to home page if no other URL matches
@@ -22,27 +24,18 @@
       .state('categories', {
         url: '/categories',
         templateUrl: 'src/modules/menuapp/template/categories.template.html',
+        controller: 'CategoriesController as ctrl',
         resolve: {
-          categories: ['DataService', function(DataService) {
-            return DataService.getItems();
+          categories: ['MenuDataService', function(MenuDataService) {
+            return MenuDataService
+              .getAllCategories()
+              .then(function(response) {
+                console.log('router', response)
+                return response.data;
+              });
           }]
         }
       })
-
-      .state('itemDetail', {
-        url: '/item-detail/{itemId}',
-        templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
-        controller: 'ItemDetailController as itemDetail',
-        resolve: {
-          item: ['$stateParams', 'ShoppingListService',
-                function ($stateParams, ShoppingListService) {
-                  return ShoppingListService.getItems()
-                    .then(function (items) {
-                      return items[$stateParams.itemId];
-                    });
-                }]
-        }
-      });
   }
 
 })();

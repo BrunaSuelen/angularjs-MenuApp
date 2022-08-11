@@ -12,12 +12,12 @@
   function MenuDataService($http, ApiBasePath) {
     let service = this;
 
-    service.getAllCategories = function ($http, ApiBasePath) {
+    service.getAllCategories = function() {
       let url = `${ApiBasePath}/categories.json`;
       return $http.get(url);
     };
 
-    service.getItemsForCategory = function (categoryShortName) {
+    service.getItemsForCategory = function(categoryShortName) {
       let url = `${ApiBasePath}/menu_items.json?category=${categoryShortName}`;
       return $http.get(url);
     };
