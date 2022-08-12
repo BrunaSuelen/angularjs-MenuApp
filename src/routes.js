@@ -20,7 +20,7 @@
         templateUrl: 'src/modules/menuapp/template/home.template.html'
       })
 
-      // Premade list page
+      // PAGE CATEGORIES
       .state('categories', {
         url: '/categories',
         templateUrl: 'src/modules/menuapp/template/categories.template.html',
@@ -37,7 +37,7 @@
         }
       })
 
-      // Premade list page
+      // PAGE ITEMS OF CATEGORY
       .state('items', {
         url: '/items/:category',
         templateUrl: 'src/modules/menuapp/template/items.template.html',
